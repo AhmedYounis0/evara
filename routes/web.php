@@ -3,7 +3,9 @@
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\FeatureController;
 use App\Http\Controllers\admin\PostController;
+use App\Http\Controllers\admin\SliderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,8 +25,10 @@ Route::get('/', function () {
 
 
 Route::prefix('dashboard')->group(function (){
-    Route::get('/',DashboardController::class);
+    Route::get('/',DashboardController::class)->name('dashboard.home');
     Route::resource('posts',PostController::class);
-    Route::resource('brands',BrandController::class);
-    Route::resource('categories',CategoryController::class);
+    Route::resource('brands',BrandController::class)->except(['show']);
+    Route::resource('categories',CategoryController::class)->except(['show']);
+    Route::resource('features',FeatureController::class)->except(['show']);
+    Route::resource('sliders',SliderController::class)->except(['show']);
 });

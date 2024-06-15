@@ -32,6 +32,10 @@
                     </td>
                 </tr>
             @endforeach
+        @else
+        <tr>
+            <td class="alert alert-danger text-center" colspan="7">No posts to view</td>
+        </tr>
         @endif
         </tbody>
     </table>

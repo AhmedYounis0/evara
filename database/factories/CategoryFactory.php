@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,16 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'category_id' => null,
         ];
+    }
+    public function withParent(Category $parent)
+    {
+        return $this->state(function (array $attributes) use ($parent) {
+            return [
+                'category_id' => $parent->id,
+            ];
+        });
     }
 }

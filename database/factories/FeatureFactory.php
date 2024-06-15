@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Brand>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Feature>
  */
-class BrandFactory extends Factory
+class FeatureFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,7 @@ class BrandFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'image' => $this->faker->imageUrl(),
+            'image'=> $this->faker->imageUrl(),
         ];
     }
 }
