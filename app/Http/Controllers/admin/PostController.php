@@ -41,15 +41,13 @@ class PostController extends Controller
     {
         $data = $request->validated();
 
-        $image = $request->has('image');
+        $image = $request->file('image');
 
         $newImageName = uniqid() . '.' . $image->getClientOriginalName();
 
         $image->storeAs('/public/blogs', $newImageName);
 
         $data['image'] = $newImageName;
-
-        $data['slug'] = 'fsdngjsb1111ngsd';
 
         $data['user_id'] = 1;
 
