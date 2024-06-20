@@ -4,108 +4,42 @@
 <main class="main">
     <section class="home-slider position-relative pt-50">
         <div class="hero-slider-1 dot-style-1 dot-style-1-position-1">
-            <div class="single-hero-slider single-animation-wrap">
-                <div class="container">
-                    <div class="row align-items-center slider-animated-1">
-                        <div class="col-lg-5 col-md-6">
-                            <div class="hero-slider-content-2">
-                                <h4 class="animated">Trade-in offer</h4>
-                                <h2 class="animated fw-900">Supper value deals</h2>
-                                <h1 class="animated fw-900 text-brand">On all products</h1>
-                                <p class="animated">Save more with coupons & up to 70% off</p>
-                                <a class="animated btn btn-brush btn-brush-3" href="shop-product-right.html"> Shop Now </a>
+            @foreach($sliders as $slider)
+                <div class="single-hero-slider single-animation-wrap">
+                    <div class="container">
+                        <div class="row align-items-center slider-animated-1">
+                            <div class="col-lg-5 col-md-6">
+                                <div class="hero-slider-content-2">
+                                    <h4 class="animated">{{ $slider->header }}</h4>
+                                    <h2 class="animated fw-900">{{ $slider->title }}</h2>
+                                    <h1 class="animated fw-900 text-brand">{{ $slider->subtitle }}</h1>
+                                    <p class="animated">{{ $slider->content }}</p>
+                                    <a class="animated btn btn-brush btn-brush-3" href="shop-product-right.html"> Shop Now </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-7 col-md-6">
-                            <div class="single-slider-img single-slider-img-1">
-                                <img class="animated slider-1-1" src="{{ asset('front/assets') }}/imgs/slider/slider-1.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="single-hero-slider single-animation-wrap">
-                <div class="container">
-                    <div class="row align-items-center slider-animated-1">
-                        <div class="col-lg-5 col-md-6">
-                            <div class="hero-slider-content-2">
-                                <h4 class="animated">Hot promotions</h4>
-                                <h2 class="animated fw-900">Fashion Trending</h2>
-                                <h1 class="animated fw-900 text-7">Great Collection</h1>
-                                <p class="animated">Save more with coupons & up to 20% off</p>
-                                <a class="animated btn btn-brush btn-brush-2" href="shop-product-right.html"> Discover Now </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-7 col-md-6">
-                            <div class="single-slider-img single-slider-img-1">
-                                <img class="animated slider-1-2" src="{{ asset('front/assets') }}/imgs/slider/slider-2.png" alt="">
+                            <div class="col-lg-7 col-md-6">
+                                <div class="single-slider-img single-slider-img-1">
+                                    <img class="animated slider-1-1" src="/storage/sliders/{{ $slider->image }}" alt="">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="single-hero-slider single-animation-wrap">
-                <div class="container">
-                    <div class="row align-items-center slider-animated-1">
-                        <div class="col-lg-5 col-md-6">
-                            <div class="hero-slider-content-2">
-                                <h4 class="animated">Upcoming Offer</h4>
-                                <h2 class="animated fw-900">Big Deals From</h2>
-                                <h1 class="animated fw-900 text-8">Manufacturer</h1>
-                                <p class="animated">Clothing, Shoes, Bags, Wallets...</p>
-                                <a class="animated btn btn-brush btn-brush-1" href="shop-product-right.html"> Shop Now </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-7 col-md-6">
-                            <div class="single-slider-img single-slider-img-1">
-                                <img class="animated slider-1-3" src="{{ asset('front/assets') }}/imgs/slider/slider-3.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
         <div class="slider-arrow hero-slider-1-arrow"></div>
     </section>
     <section class="featured section-padding position-relative">
         <div class="container">
             <div class="row">
-                <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                    <div class="banner-features wow fadeIn animated hover-up">
-                        <img src="{{ asset('front/assets') }}/imgs/theme/icons/feature-1.png" alt="">
-                        <h4 class="bg-1">Free Shipping</h4>
+                @foreach($features as $feature)
+                    <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+                        <div class="banner-features wow fadeIn animated hover-up">
+                            <img src="/storage/features/{{ $feature->image }}" alt="">
+                            <h4 class="bg-1">{{ $feature->name }}</h4>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                    <div class="banner-features wow fadeIn animated hover-up">
-                        <img src="{{ asset('front/assets') }}/imgs/theme/icons/feature-2.png" alt="">
-                        <h4 class="bg-3">Online Order</h4>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                    <div class="banner-features wow fadeIn animated hover-up">
-                        <img src="{{ asset('front/assets') }}/imgs/theme/icons/feature-3.png" alt="">
-                        <h4 class="bg-2">Save Money</h4>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                    <div class="banner-features wow fadeIn animated hover-up">
-                        <img src="{{ asset('front/assets') }}/imgs/theme/icons/feature-4.png" alt="">
-                        <h4 class="bg-4">Promotions</h4>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                    <div class="banner-features wow fadeIn animated hover-up">
-                        <img src="{{ asset('front/assets') }}/imgs/theme/icons/feature-5.png" alt="">
-                        <h4 class="bg-5">Happy Sell</h4>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                    <div class="banner-features wow fadeIn animated hover-up">
-                        <img src="{{ asset('front/assets') }}/imgs/theme/icons/feature-6.png" alt="">
-                        <h4 class="bg-6">24/7 Support</h4>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -1068,54 +1002,14 @@
             <div class="carausel-6-columns-cover position-relative">
                 <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-arrows"></div>
                 <div class="carausel-6-columns" id="carausel-6-columns">
-                    <div class="card-1">
-                        <figure class=" img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="{{ asset('front/assets') }}/imgs/shop/category-thumb-1.jpg" alt=""></a>
-                        </figure>
-                        <h5><a href="shop-grid-right.html">T-Shirt</a></h5>
-                    </div>
-                    <div class="card-1">
-                        <figure class=" img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"> <img src="{{ asset('front/assets') }}/imgs/shop/category-thumb-2.jpg" alt=""></a>
-                        </figure>
-                        <h5><a href="shop-grid-right.html">Bags</a></h5>
-                    </div>
-                    <div class="card-1">
-                        <figure class=" img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="{{ asset('front/assets') }}/imgs/shop/category-thumb-3.jpg" alt=""></a>
-                        </figure>
-                        <h5><a href="shop-grid-right.html">Sandan</a></h5>
-                    </div>
-                    <div class="card-1">
-                        <figure class=" img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="{{ asset('front/assets') }}/imgs/shop/category-thumb-4.jpg" alt=""></a>
-                        </figure>
-                        <h5><a href="shop-grid-right.html">Scarf Cap</a></h5>
-                    </div>
-                    <div class="card-1">
-                        <figure class=" img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="{{ asset('front/assets') }}/imgs/shop/category-thumb-5.jpg" alt=""></a>
-                        </figure>
-                        <h5><a href="shop-grid-right.html">Shoes</a></h5>
-                    </div>
-                    <div class="card-1">
-                        <figure class=" img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="{{ asset('front/assets') }}/imgs/shop/category-thumb-6.jpg" alt=""></a>
-                        </figure>
-                        <h5><a href="shop-grid-right.html">Pillowcase</a></h5>
-                    </div>
-                    <div class="card-1">
-                        <figure class=" img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="{{ asset('front/assets') }}/imgs/shop/category-thumb-7.jpg" alt=""></a>
-                        </figure>
-                        <h5><a href="shop-grid-right.html">Jumpsuits</a></h5>
-                    </div>
-                    <div class="card-1">
-                        <figure class=" img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="{{ asset('front/assets') }}/imgs/shop/category-thumb-8.jpg" alt=""></a>
-                        </figure>
-                        <h5><a href="shop-grid-right.html">Hats</a></h5>
-                    </div>
+                    @foreach($popularCategories as $pCategory)
+                        <div class="card-1">
+                            <figure class=" img-hover-scale overflow-hidden">
+                                <a href="{{ route('categories.show',$pCategory->slug) }}"><img src="storage/categories/{{ $pCategory->image }}" alt=""></a>
+                            </figure>
+                            <h5><a href="{{ route('categories.show',$pCategory->slug) }}">{{ $pCategory->name }}</a></h5>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -1426,27 +1320,11 @@
             <div class="carausel-6-columns-cover position-relative wow fadeIn animated">
                 <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-3-arrows"></div>
                 <div class="carausel-6-columns text-center" id="carausel-6-columns-3">
+                    @foreach($brands as $brand)
                     <div class="brand-logo">
-                        <img class="img-grey-hover" src="{{ asset('front/assets') }}/imgs/banner/brand-1.png" alt="">
-                    </div>
-                    <div class="brand-logo">
-                        <img class="img-grey-hover" src="{{ asset('front/assets') }}/imgs/banner/brand-2.png" alt="">
-                    </div>
-                    <div class="brand-logo">
-                        <img class="img-grey-hover" src="{{ asset('front/assets') }}/imgs/banner/brand-3.png" alt="">
-                    </div>
-                    <div class="brand-logo">
-                        <img class="img-grey-hover" src="{{ asset('front/assets') }}/imgs/banner/brand-4.png" alt="">
-                    </div>
-                    <div class="brand-logo">
-                        <img class="img-grey-hover" src="{{ asset('front/assets') }}/imgs/banner/brand-5.png" alt="">
-                    </div>
-                    <div class="brand-logo">
-                        <img class="img-grey-hover" src="{{ asset('front/assets') }}/imgs/banner/brand-6.png" alt="">
-                    </div>
-                    <div class="brand-logo">
-                        <img class="img-grey-hover" src="{{ asset('front/assets') }}/imgs/banner/brand-3.png" alt="">
-                    </div>
+                            <img class="img-grey-hover" src="storage/brands/{{ $brand->image }}" alt="">
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

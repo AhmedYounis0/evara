@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug');
+            $table->string('image')->nullable();
+            $table->integer('category_views')->default(0);
             $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('cascade');
-            $table->boolean('is_popular')->default(0);
             $table->timestamps();
         });
     }

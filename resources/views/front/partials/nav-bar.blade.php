@@ -43,23 +43,16 @@
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="index.html"><img src="{{ asset('front/assets') }}/imgs/theme/logo.svg" alt="logo"></a>
+                    <a href="{{ route('theme.home') }}"><img src="{{ asset('front/assets') }}/imgs/theme/logo.svg" alt="logo"></a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
                         <form action="#">
                             <select class="select-active">
                                 <option>All Categories</option>
-                                <option>Women's</option>
-                                <option>Men's</option>
-                                <option>Cellphones</option>
-                                <option>Computer</option>
-                                <option>Electronics</option>
-                                <option> Accessories</option>
-                                <option>Home & Garden</option>
-                                <option>Luggage</option>
-                                <option>Shoes</option>
-                                <option>Mother & Kids</option>
+                                @foreach($navCategories as $value)
+                                <option>{{ $value->name }}</option>
+                                @endforeach
                             </select>
                             <input type="text" placeholder="Search for items...">
                         </form>
@@ -346,38 +339,18 @@
                                 </li>
                                 <li class="position-static"><a href="#">Mega menu <i class="fi-rs-angle-down"></i></a>
                                     <ul class="mega-menu">
-                                        <li class="sub-mega-menu sub-mega-menu-width-22">
-                                            <a class="menu-title" href="#">Women's Fashion</a>
-                                            <ul>
-                                                <li><a href="shop-product-right.html">Dresses</a></li>
-                                                <li><a href="shop-product-right.html">Blouses & Shirts</a></li>
-                                                <li><a href="shop-product-right.html">Hoodies & Sweatshirts</a></li>
-                                                <li><a href="shop-product-right.html">Wedding Dresses</a></li>
-                                                <li><a href="shop-product-right.html">Prom Dresses</a></li>
-                                                <li><a href="shop-product-right.html">Cosplay Costumes</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="sub-mega-menu sub-mega-menu-width-22">
-                                            <a class="menu-title" href="#">Men's Fashion</a>
-                                            <ul>
-                                                <li><a href="shop-product-right.html">Jackets</a></li>
-                                                <li><a href="shop-product-right.html">Casual Faux Leather</a></li>
-                                                <li><a href="shop-product-right.html">Genuine Leather</a></li>
-                                                <li><a href="shop-product-right.html">Casual Pants</a></li>
-                                                <li><a href="shop-product-right.html">Sweatpants</a></li>
-                                                <li><a href="shop-product-right.html">Harem Pants</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="sub-mega-menu sub-mega-menu-width-22">
-                                            <a class="menu-title" href="#">Technology</a>
-                                            <ul>
-                                                <li><a href="shop-product-right.html">Gaming Laptops</a></li>
-                                                <li><a href="shop-product-right.html">Ultraslim Laptops</a></li>
-                                                <li><a href="shop-product-right.html">Tablets</a></li>
-                                                <li><a href="shop-product-right.html">Laptop Accessories</a></li>
-                                                <li><a href="shop-product-right.html">Tablet Accessories</a></li>
-                                            </ul>
-                                        </li>
+                                        @foreach($categories as $category)
+                                            <li class="sub-mega-menu sub-mega-menu-width-22">
+                                                <a class="menu-title" href="#">{{ $category->name }}</a>
+                                                <ul>
+                                                    @foreach($category->children as $childCategory)
+                                                        <li>
+                                                            <a href="{{ route('categories.show',$childCategory->slug) }}">{{ $childCategory->name }}</a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        @endforeach
                                         <li class="sub-mega-menu sub-mega-menu-width-34">
                                             <div class="menu-banner-wrap">
                                                 <a href="shop-product-right.html"><img src="{{ asset('front/assets') }}/imgs/banner/menu-banner.jpg" alt="Evara"></a>

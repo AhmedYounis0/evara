@@ -92,10 +92,11 @@ class FeatureController extends Controller
      */
     public function destroy(Feature $feature)
     {
-        Storage::delete("public/features/$feature->image");
-
+        if (Storage::exists("public/features/$feature->image"))
+        {
+            Storage::delete("public/features/$feature->image");
+        }
         $feature->delete();
-
         return to_route('features.index')->with('success', 'Feature deleted successfully.');
     }
 }

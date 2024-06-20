@@ -11,16 +11,23 @@
         <div class="col-lg-12">
             <div class="card mb-4">
                 <div class="card-body">
-                    <form action="{{ route('categories.store') }}" method="POST">
+                    <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                        <div class="mb-4 col-lg-6">
-                            <label for="post_name" class="form-label">Category</label>
-                            <input type="text" name="name" placeholder="Type here" class="form-control" id="post_name" value="{{ old('title') }}">
-                            @error('name')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
+                            <div class="mb-4 col-lg-6">
+                                <label for="post_name" class="form-label">Category</label>
+                                <input type="text" name="name" placeholder="Type here" class="form-control" id="post_name" value="{{ old('title') }}">
+                                @error('name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mb-4 col-lg-6">
+                                <label for="post_image" class="form-label">Image</label>
+                                <input type="file" name="image"  class="form-control" id="post_image">
+                                @error('image')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                             <div class="col-lg-6">
                                 <label class="form-label">Category Parent</label>
                                 <select name="category_id" class="form-select">

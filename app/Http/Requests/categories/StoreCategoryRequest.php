@@ -22,8 +22,10 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|unique:categories,name',
-            'category_id' => 'nullable|integer|exists:categories,id',
+            'name'          => 'required|string|unique:categories,name',
+            'image'         => 'nullable|mimes:jpeg,png,jpg|max:2048',
+            'category_views'=> 'nullable|integer',
+            'category_id'   => 'nullable|integer|exists:categories,id',
         ];
     }
 

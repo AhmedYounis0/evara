@@ -29,6 +29,13 @@
                                     @enderror
                                 </div>
                                 <div class="mb-4 col-lg-6">
+                                    <label for="post_name" class="form-label">Sub Title</label>
+                                    <input type="text" name="subtitle" placeholder="Type here" class="form-control" id="post_name" value="{{ old('title') }}">
+                                    @error('subtitle')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-4 col-lg-6">
                                     <label for="post_name" class="form-label">Content</label>
                                     <input type="text" name="content" placeholder="Type here" class="form-control" id="post_name" value="{{ old('content') }}">
                                     @error('content')
@@ -42,7 +49,7 @@
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-lg-12">
+                                <div class="col-lg-6">
                                     <label for="post_name" class="form-label">Image</label>
                                     <input type="file" name="image" placeholder="Type here" class="form-control" id="post_name">
                                     @error('image')

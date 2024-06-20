@@ -22,7 +22,7 @@ class StoreBrandRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'Required|string|between:5,100',
+            'name' => 'Required|string|between:3,100',
             'image' => 'Required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }

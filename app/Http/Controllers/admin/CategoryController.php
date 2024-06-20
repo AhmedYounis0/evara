@@ -41,6 +41,17 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
 
+        if ($request->has('image'))
+        {
+            $image = $request->file('image');
+
+            $newName = uniqid() . "." . $image->getClientOriginalExtension();
+
+            $image->storeAs("public/categories", $newName);
+
+            $data['image'] = $newName;
+        }
+
         Category::create($data);
 
         return to_route('categories.index')->with('success', 'Category created successfully');
@@ -84,6 +95,20 @@ class CategoryController extends Controller
         $category->delete();
 
         return to_route('categories.index')->with('success', 'Category deleted successfully');
-
     }
+
+    public function getSubcategories($category_id)
+    {
+        // Validate category_id to ensure it's a valid integer
+        if (!is_numeric($category_id) || intval($category_id) <= 0) {
+            return response()->json([], 400); // Return empty array with 400 status if invalid
+        }
+
+        // Find subcategories with the given category_id
+        $subcategories = Category::where('category_id', $category_id)->get(['id', 'name']);
+
+        // Return subcategories as JSON
+        return response()->json(['subcategories' => $subcategories]);
+    }
+
 }

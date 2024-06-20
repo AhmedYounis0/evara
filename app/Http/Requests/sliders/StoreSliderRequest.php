@@ -24,6 +24,7 @@ class StoreSliderRequest extends FormRequest
         return [
             'header'    => 'required|string',
             'title'     => 'required|string',
+            'subtitle'  => 'nullable|string',
             'content'   => 'required|string',
             'url'       => 'required|url',
             'image'     => 'required|image|mimes:jpeg,png,jpg|max:2048',

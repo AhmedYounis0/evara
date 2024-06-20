@@ -39,6 +39,11 @@
                     <span class="text">Slider</span>
                 </a>
             </li>
+            <li class="menu-item @if($title == 'Products') active @endif">
+                <a class="menu-link" href="{{ route('products.index') }}"> <i class="icon material-icons md-shopping_bag"></i>
+                    <span class="text">Products</span>
+                </a>
+            </li>
             <li class="menu-item has-submenu">
                 <a class="menu-link" href="page-products-list.html"> <i class="icon material-icons md-shopping_bag"></i>
                     <span class="text">Products</span>

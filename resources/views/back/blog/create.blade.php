@@ -21,8 +21,8 @@
                             @enderror
                         </div>
                         <div class="col-xl-12">
-                            <div class="form-group">
-                                <label> Body </label>
+                            <div class="card">
+                                <label class="form-label"> Content </label>
                                 <textarea class="form-control" style="height: 100px !important;" id="body" placeholder="Enter the Description" name="description">{{ old('description') }}</textarea>
                                 @error('description')
                                 <div class="alert alert-danger">{{ $message }}</div>

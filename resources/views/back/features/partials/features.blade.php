@@ -14,7 +14,7 @@
                 <tr>
                     <td>{{ 1 + $loop->index }}</td>
                     <td><b>{{ $feature->name }}</b></td>
-                    <td><img src="/storage/features/{{ $feature->image }}" style="height: 150px; width: 150px;"></td>
+                    <td><img src="/storage/features/{{ $feature->image }}" style="height: 75px; width: 75px;"></td>
                     <td class="text-end">
                         <a href="{{ route('features.edit', $feature) }}" class="btn btn-dark rounded font-sm">Edit</a>
                         <form action="{{ route('features.destroy', $feature) }}" class="d-inline" method="POST">

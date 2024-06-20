@@ -24,9 +24,10 @@ class UpdateSliderRequest extends FormRequest
         return [
             'header' => 'required|string',
             'title' => 'required|string',
+            'subtitle' => 'nullable|string',
             'content' => 'required|string',
             'url' => 'nullable|url',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'nullable|mimes:jpeg,png,jpg|max:2048',
         ];
     }
 }

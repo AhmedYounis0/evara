@@ -14,7 +14,7 @@
                 <tr>
                     <td>{{ 1 + $loop->index }}</td>
                     <td><b>{{ $brand->name }}</b></td>
-                    <td><img src="/storage/brands/{{ $brand->image }}" style="height: 250px; width: 250px;" alt=""></td>
+                    <td><img src="/storage/brands/{{ $brand->image }}" style="height: 100px; width: 100px;" alt=""></td>
                     <td class="text-end">
                         <a href="{{ route('brands.edit',$brand) }}" class="btn btn-dark rounded font-sm">Edit</a>
                         <form action="{{ route('brands.destroy',$brand) }}" class="d-inline" method="POST">

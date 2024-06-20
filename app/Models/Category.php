@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'category_id'];
+    protected $fillable = ['name','image','category_views','category_id'];
 
     public function children()
     {
@@ -19,6 +20,16 @@ class Category extends Model
     public function parent()
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
     }
 
 }

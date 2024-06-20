@@ -5,8 +5,8 @@
             <th>#</th>
             <th scope="col">Header</th>
             <th scope="col">Title</th>
+            <th scope="col">Sub Title</th>
             <th scope="col">Content</th>
-            <th scope="col">Link</th>
             <th scope="col">Image</th>
             <th scope="col" class="text-center">Action</th>
         </tr>
@@ -18,8 +18,8 @@
                     <td>{{ 1 + $loop->index }}</td>
                     <td>{{ $slider->header }}</td>
                     <td>{{ $slider->title }}</td>
+                    <td>{{ $slider->subtitle }}</td>
                     <td>{{ $slider->content }}</td>
-                    <td>{{ $slider->url }}</td>
                     <td><img src="/storage/sliders/{{ $slider->image }}" style="height: 150px; width: 150px;"></td>
                     <td class="text-end">
                         <a href="{{ route('sliders.edit', $slider) }}" class="btn btn-dark rounded font-sm">Edit</a>
@@ -33,7 +33,7 @@
             @endforeach
         @else
             <tr>
-                <td class="alert alert-danger text-center" colspan="4">No Slider to view</td>
+                <td class="alert alert-danger text-center" colspan="7">No Slider to view</td>
             </tr>
         @endif
         </tbody>
