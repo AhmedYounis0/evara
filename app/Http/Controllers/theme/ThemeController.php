@@ -23,6 +23,7 @@ class ThemeController extends Controller
         $categories = Category::with('children')->whereNull('category_id')->get();
         $popularCategories = Category::WhereNotNull('category_id')->orderBy('category_views', 'desc')->take(8)->get();
         $brands = Brand::all()->take(8);
+
         return view('front.index', compact(
             'title',
             'categories',

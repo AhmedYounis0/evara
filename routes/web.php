@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\FeatureController;
 use App\Http\Controllers\admin\PostController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\SliderController;
+use App\Http\Controllers\admin\TagController;
 use App\Http\Controllers\theme\ThemeController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,5 +34,6 @@ Route::prefix('dashboard')->group(function (){
     Route::resource('features',FeatureController::class)->except(['show']);
     Route::resource('sliders',SliderController::class)->except(['show']);
     Route::resource('products',ProductController::class)->except(['show']);
+    Route::resource('tags',TagController::class)->except(['show']);
     Route::get('/get-subcategories/{category_id}', [CategoryController::class, 'getSubcategories']);
 });

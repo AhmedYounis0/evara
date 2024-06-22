@@ -8,9 +8,13 @@ use App\Http\Requests\products\UpdateProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductVisitor;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use function Sodium\increment;
 
 class ProductController extends Controller
 {
@@ -33,7 +37,8 @@ class ProductController extends Controller
         $title = "Create Product";
         $brands = Brand::all();
         $categories = Category::whereNull('category_id')->get();
-        return view('back.products.create', compact('title', 'brands', 'categories'));
+        $tags = Tag::all();
+        return view('back.products.create', compact('title', 'brands', 'categories','tags'));
     }
 
     /**
@@ -43,15 +48,27 @@ class ProductController extends Controller
     {
         $data = $request->validated();
 
-        $image = $request->file('image');
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/products', $imageName);
+            $data['image'] = $imageName;
+        }
 
-        $imageName = uniqid() . "." .$image->getClientOriginalExtension();
+        $product = Product::create(Arr::except($data, ['tags','images'])); // Use Arr::except to exclude tags
 
-        $image->storeAs('public/products', $imageName);
+        if ($request->has('tags')) {
+            $tags = $request->input('tags');
+            $product->tags()->attach($tags); // Attach the tags
+        }
 
-        $data['image'] = $imageName;
-
-        Product::create($data);
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('public/products', $imageName);
+                $product->images()->create(['path' => $imageName]);
+            }
+        }
 
         return to_route('products.index')->with('success', 'Product created successfully.');
     }
@@ -59,9 +76,16 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Product $product)
     {
-        //
+//        $visitorCreated = ProductVisitor::firstOrCreate([
+//           'product_id' => $product->id,
+//           'ip' => request()->ip(),
+//        ]);
+//        if ($visitorCreated->wasRecentlyCreated)
+//        {
+//            $product->increment('count');
+//        }
     }
 
     /**
@@ -70,9 +94,11 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $title = "Edit Product";
+        $product->load('category','brand','tags');
         $brands = Brand::all();
         $categories = Category::whereNull('category_id')->get();
-        return view('back.products.edit', compact('title','product','brands','categories'));
+        $tags = Tag::all();
+        return view('back.products.edit', compact('title','product','brands','categories','tags'));
     }
 
     /**
@@ -91,6 +117,11 @@ class ProductController extends Controller
         }
 
         $product->update($data);
+        if ($request->filled('tags')) {
+            $product->tags()->sync($request->tags);
+        } else {
+            $product->tags()->sync([]);
+        }
         return to_route('products.index')->with('success', 'Product updated successfully.');
 
     }

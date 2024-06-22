@@ -53,17 +53,34 @@
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label">Brand</label>
-                                <select name="brand_id" class="form-control">
-                                    @foreach($brands as $brand)
-                                        <option value="{{ $brand->id }}" @if($brand->id == $product->brand->id) @endif>{{ $brand->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('brand_id')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
+                                <div class="mb-4 col-lg-6">
+                                    <label class="form-label">Brand</label>
+                                    <select name="brand_id" class="form-control">
+                                        <option selected disabled>Select brand</option>
+                                        @foreach($brands as $brand)
+                                            <option value="{{ $brand->id }}" @if($brand->id == $product->brand->id) selected @endif>{{ $brand->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('brand_id')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-4 col-lg-6">
+                                    <label class="form-label">Tags</label>
+                                        @foreach($tags->chunk(6) as $chunk)
+                                        <div class="row">
+                                            @foreach($chunk as $tag)
+                                                <div class="form-check col-md-2">
+                                                    <input class="form-check-input" name="tags[]" value="{{ $tag->id }}" @if($product->tags->contains('id',$tag->id)) checked @endif type="checkbox" id="product-cat-{{ $tag->id }}">
+                                                    <label class="form-check-label" for="product-cat-{{ $tag->id }}">{{ $tag->name }}</label>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        @endforeach
+                                    @error('tags')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div class="card-body">

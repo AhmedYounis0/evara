@@ -44,6 +44,11 @@
                     <span class="text">Products</span>
                 </a>
             </li>
+            <li class="menu-item @if($title == 'Tags') active @endif">
+                <a class="menu-link" href="{{ route('tags.index') }}"> <i class="icon material-icons md-shopping_bag"></i>
+                    <span class="text">Tags</span>
+                </a>
+            </li>
             <li class="menu-item has-submenu">
                 <a class="menu-link" href="page-products-list.html"> <i class="icon material-icons md-shopping_bag"></i>
                     <span class="text">Products</span>

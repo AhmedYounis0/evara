@@ -22,6 +22,8 @@ return new class extends Migration
             $table->text('description');
             $table->integer('stock')->default(0);
             $table->string('sku')->nullable();
+            $table->integer('is_featured')->default(0);
+            $table->bigInteger('count')->default(0);
             $table->softDeletes();
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('brand_id')->constrained('brands')->onDelete('cascade');

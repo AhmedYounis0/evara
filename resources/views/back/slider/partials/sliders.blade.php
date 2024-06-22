@@ -20,7 +20,7 @@
                     <td>{{ $slider->title }}</td>
                     <td>{{ $slider->subtitle }}</td>
                     <td>{{ $slider->content }}</td>
-                    <td><img src="/storage/sliders/{{ $slider->image }}" style="height: 150px; width: 150px;"></td>
+                    <td><img src="/storage/sliders/{{ $slider->image }}" style="height: 100px; width: 100px;"></td>
                     <td class="text-end">
                         <a href="{{ route('sliders.edit', $slider) }}" class="btn btn-dark rounded font-sm">Edit</a>
                         <form action="{{ route('sliders.destroy', $slider) }}" class="d-inline" method="POST">

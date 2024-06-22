@@ -23,6 +23,21 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class)->withTimestamps();
+    }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function visitors()
+    {
+        return $this->hasMany(ProductVisitor::class);
+    }
+
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = $value;
