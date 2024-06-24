@@ -11,7 +11,7 @@
             <div class="col-lg-12">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <form action="{{ route('categories.update',$category) }}" method="POST">
+                        <form action="{{ route('categories.update',$category) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row">
@@ -22,8 +22,15 @@
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="mb-4 col-lg-6">
+                                    <label for="post_image" class="form-label">Image</label>
+                                    <input type="file" name="image"  class="form-control" id="post_image">
+                                    @error('image')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
                                 @if(!$category->category_id == null)
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6 mb-5">
                                         <label class="form-label">Category Parent</label>
                                         <select name="category_id" class="form-select">
                                             <option selected disabled>Select Category</option>

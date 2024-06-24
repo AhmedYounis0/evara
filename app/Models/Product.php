@@ -11,6 +11,11 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public function scopeFeatured($query)
+    {
+        return $query->where('is_featured', 1);
+    }
+
     protected $guarded = [];
 
     public function category()

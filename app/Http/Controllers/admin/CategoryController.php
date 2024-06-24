@@ -82,6 +82,14 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
 
+        if ($request->has('image'))
+        {
+            $image = $request->file('image');
+            $newName = uniqid() . "." . $image->getClientOriginalExtension();
+            $image->storeAs("public/categories", $newName);
+            $data['image'] = $newName;
+        }
+
         $category->update($data);
 
         return to_route('categories.index')->with('success', 'Category updated successfully');

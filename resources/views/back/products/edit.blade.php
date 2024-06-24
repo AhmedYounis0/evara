@@ -24,12 +24,24 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="mb-4">
-                                <label class="form-label">Price</label>
-                                <input type="text" name="price" value="{{ $product->price }}" placeholder="Type here" class="form-control">
-                                @error('price')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
+                            <div class="row">
+                                <div class="mb-4 col-lg-6">
+                                    <label class="form-label">Price</label>
+                                    <input type="text" name="price" value="{{ $product->price }}" placeholder="Type here" class="form-control">
+                                    @error('price')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-4 col-lg-6">
+                                    <label class="form-label">Featured</label>
+                                    <select class="form-control" name="is_featured">
+                                        <option value="1" @if($product->is_featured == 1) selected @endif>Featured</option>
+                                        <option value="0" @if($product->is_featured == 0) selected @endif>Not Featured</option>
+                                    </select>
+                                    @error('is_featured')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="row gx-3">
                                 <div class="col-md-4  mb-3">

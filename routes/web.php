@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',ThemeController::class)->name('theme.home');
 Route::get('categories/{name}', [App\Http\Controllers\theme\CategoryController::class, 'show'])->name('categories.show');
-
+Route::get('/products/{slug}', [App\Http\Controllers\theme\ProductController::class, 'show'])->name('products.show');
 
 Route::prefix('dashboard')->group(function (){
     Route::get('/',HomeController::class)->name('dashboard.home');
